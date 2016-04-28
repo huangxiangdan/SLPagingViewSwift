@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let orange = UIColor(red: 255/255, green: 69.0/255, blue: 0.0/255, alpha: 1.0)
         let gray = UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.0)
         
-        let ctr1 = UIViewController()
+        let ctr1 = TestViewController()
         ctr1.title = "Ctr1"
         ctr1.view.backgroundColor = orange
-        let ctr2 = UIViewController()
+        let ctr2 = TestViewController()
         ctr2.title = "Ctr2"
         ctr2.view.backgroundColor = UIColor.yellowColor()
-        let ctr3 = UIViewController()
+        let ctr3 = TestViewController()
         ctr3.title = "Ctr3"
         ctr3.view.backgroundColor = gray
         

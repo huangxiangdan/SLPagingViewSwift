@@ -40,6 +40,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     private var pageControl: UIPageControl!
     private var navigationBarView: UIView   = UIView()
     private var navItems: [UIView]          = []
+    private var controllers: [UIViewController] = []
     private var needToShowPageControl: Bool = false
     private var isUserInteraction: Bool     = false
     private var indexSelected: Int          = 0
@@ -56,11 +57,11 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Constructors with items & views
     public convenience init(items: [UIView], views: [UIView]) {
-        self.init(items: items, views: views, showPageControl:false, navBarBackground:UIColor.whiteColor())
+        self.init(items: items, views: views, controllers: [], showPageControl:false, navBarBackground:UIColor.whiteColor())
     }
     
     public convenience init(items: [UIView], views: [UIView], showPageControl: Bool){
-        self.init(items: items, views: views, showPageControl:showPageControl, navBarBackground:UIColor.whiteColor())
+        self.init(items: items, views: views, controllers:[] ,showPageControl:showPageControl, navBarBackground:UIColor.whiteColor())
     }
     
     /*
@@ -73,11 +74,12 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     *
     *  @return Instance of SLPagingViewController
     */
-    public init(items: [UIView], views: [UIView], showPageControl: Bool, navBarBackground: UIColor) {
+    public init(items: [UIView], views: [UIView], controllers: [UIViewController], showPageControl: Bool, navBarBackground: UIColor) {
         super.init(nibName: nil, bundle: nil)
         needToShowPageControl             = showPageControl
         navigationBarView.backgroundColor = navBarBackground
         isUserInteraction                 = true
+        self.controllers = controllers
         for (i, v) in items.enumerate() {
             let vSize: CGSize = (v as? UILabel)?._slpGetSize() ?? v.frame.size
             let originX       = (self.SCREENSIZE.width/2.0 - vSize.width/2.0) + CGFloat(i * 100)
@@ -125,7 +127,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
             views.append(ctr.view)
             items.append(item)
         }
-        self.init(items: items, views: views, showPageControl:showPageControl, navBarBackground:navBarBackground)
+        self.init(items: items, views: views, controllers: controllers, showPageControl:showPageControl, navBarBackground:navBarBackground)
     }
     
     // MARK: - Constructors with items & controllers
@@ -151,7 +153,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
         for ctr in controllers {
             views.append(ctr.view)
         }
-        self.init(items: items, views: views, showPageControl:showPageControl, navBarBackground:navBarBackground)
+        self.init(items: items, views: views, controllers: controllers, showPageControl:showPageControl, navBarBackground:navBarBackground)
     }
     
     // MARK: - Life cycle
@@ -240,8 +242,17 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
             self.scrollView.contentSize = CGSize(width: width, height: height)
             var i: Int                  = 0
             while let v = views[i] {
+                let ctr = self.controllers[i]
+                addChildViewController(ctr)
+                let childController = ctr
+                childController.beginAppearanceTransition(true, animated: false)
+                childController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds))
+                childController.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
                 v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
                 self.scrollView.addSubview(v)
+                childController.didMoveToParentViewController(self)
+                childController.endAppearanceTransition()
+
                 i++
             }
         }

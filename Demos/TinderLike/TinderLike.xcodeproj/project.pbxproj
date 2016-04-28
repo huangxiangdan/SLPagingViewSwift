@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E1C13A41CD242880050A9BD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1C13A31CD242880050A9BD /* TestViewController.swift */; };
 		F85CA9AB1A61963B0013CF3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85CA9AA1A61963B0013CF3F /* AppDelegate.swift */; };
 		F85CA9B21A61963B0013CF3F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F85CA9B11A61963B0013CF3F /* Images.xcassets */; };
 		F85CA9C11A61963B0013CF3F /* TinderLikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85CA9C01A61963B0013CF3F /* TinderLikeTests.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E1C13A31CD242880050A9BD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F85CA9A51A61963B0013CF3F /* TinderLike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderLike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85CA9A91A61963B0013CF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F85CA9AA1A61963B0013CF3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				F85CA9AA1A61963B0013CF3F /* AppDelegate.swift */,
 				F85CA9B11A61963B0013CF3F /* Images.xcassets */,
 				F85CA9A81A61963B0013CF3F /* Supporting Files */,
+				1E1C13A31CD242880050A9BD /* TestViewController.swift */,
 			);
 			path = TinderLike;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F85CA9AB1A61963B0013CF3F /* AppDelegate.swift in Sources */,
+				1E1C13A41CD242880050A9BD /* TestViewController.swift in Sources */,
 				F85CA9D31A61990A0013CF3F /* SLPagingViewSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
