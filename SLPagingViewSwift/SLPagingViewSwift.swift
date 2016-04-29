@@ -25,6 +25,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Public properties
     var views = [Int : UIView]()
+    public var controllers: [UIViewController] = []
     public var currentPageControlColor: UIColor?
     public var tintPageControlColor: UIColor?
     public var pagingViewMoving: SLPagingViewMoving?
@@ -40,7 +41,6 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     private var pageControl: UIPageControl!
     private var navigationBarView: UIView   = UIView()
     private var navItems: [UIView]          = []
-    private var controllers: [UIViewController] = []
     private var needToShowPageControl: Bool = false
     private var isUserInteraction: Bool     = false
     private var indexSelected: Int          = 0
@@ -242,16 +242,21 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
             self.scrollView.contentSize = CGSize(width: width, height: height)
             var i: Int                  = 0
             while let v = views[i] {
-                let ctr = self.controllers[i]
-                addChildViewController(ctr)
-                let childController = ctr
-                childController.beginAppearanceTransition(true, animated: false)
-                childController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds))
-                childController.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-                v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
-                self.scrollView.addSubview(v)
-                childController.didMoveToParentViewController(self)
-                childController.endAppearanceTransition()
+                if i < self.controllers.count {
+                    let ctr = self.controllers[i]
+                    addChildViewController(ctr)
+                    let childController = ctr
+                    childController.beginAppearanceTransition(true, animated: false)
+                    childController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds))
+                    childController.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+                    v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
+                    self.scrollView.addSubview(v)
+                    childController.didMoveToParentViewController(self)
+                    childController.endAppearanceTransition()
+                }else{
+                    v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
+                    self.scrollView.addSubview(v)
+                }
 
                 i++
             }
