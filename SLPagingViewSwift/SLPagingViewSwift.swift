@@ -197,6 +197,9 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
         // Get the right position and update it
         let xOffset = CGFloat(index) * self.SCREENSIZE.width
         self.scrollView.setContentOffset(CGPointMake(xOffset, self.scrollView.contentOffset.y), animated: animated)
+        if !animated {
+            self.sendNewIndex(self.scrollView)   
+        }
     }
     
     // MARK: - Internal methods
