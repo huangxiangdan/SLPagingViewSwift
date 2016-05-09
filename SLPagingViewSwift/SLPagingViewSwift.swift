@@ -44,6 +44,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     private var needToShowPageControl: Bool = false
     private var isUserInteraction: Bool     = false
     private var indexSelected: Int          = 0
+    private var currentPage: Int            = 0
     
     // MARK: - Constructors
     public required init?(coder decoder: NSCoder) {
@@ -266,8 +267,11 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     private func sendNewIndex(scrollView: UIScrollView){
         let xOffset      = Float(scrollView.contentOffset.x)
         let currentIndex = (Int(roundf(xOffset)) % (self.navigationBarView.subviews.count * Int(self.SCREENSIZE.width))) / Int(self.SCREENSIZE.width)
-        if self.needToShowPageControl && self.pageControl.currentPage != currentIndex {
-            self.pageControl.currentPage = currentIndex
+        if  self.currentPage != currentIndex {
+            self.currentPage = currentIndex
+            if self.needToShowPageControl {
+                self.pageControl.currentPage = currentIndex
+            }
             self.didChangedPage?(currentPage: currentIndex)
         }
     }
