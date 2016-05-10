@@ -9,17 +9,18 @@
 import UIKit
 
 public enum SLNavigationSideItemsStyle: Int {
-    case SLNavigationSideItemsStyleOnBounds = 40
-    case SLNavigationSideItemsStyleClose = 30
-    case SLNavigationSideItemsStyleNormal = 20
-    case SLNavigationSideItemsStyleFar = 10
-    case SLNavigationSideItemsStyleDefault = 0
-    case SLNavigationSideItemsStyleCloseToEachOne = -40
+    case SLNavigationSideItemsStyleOnBounds = 20
+    case SLNavigationSideItemsStyleClose = 70
+    case SLNavigationSideItemsStyleNormal = 80
+    case SLNavigationSideItemsStyleFar = 90
+    case SLNavigationSideItemsStyleDefault = 60
+    case SLNavigationSideItemsStyleCloseToEachOne = 100
 }
 
 public typealias SLPagingViewMoving = ((subviews: [UIView])-> ())
 public typealias SLPagingViewMovingRedefine = ((scrollView: UIScrollView, subviews: NSArray)-> ())
 public typealias SLPagingViewDidChanged = ((currentPage: Int)-> ())
+public typealias SLPagingViewScrollEnded = ((currentPage: Int, pageChanged: Bool)-> ())
 
 public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     
@@ -31,6 +32,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     public var pagingViewMoving: SLPagingViewMoving?
     public var pagingViewMovingRedefine: SLPagingViewMovingRedefine?
     public var didChangedPage: SLPagingViewDidChanged?
+    public var scrollEnded: SLPagingViewScrollEnded?
     public var navigationSideItemsStyle: SLNavigationSideItemsStyle = .SLNavigationSideItemsStyleDefault
     
     // MARK: - Private properties
@@ -270,6 +272,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     private func sendNewIndex(scrollView: UIScrollView){
         let xOffset      = Float(scrollView.contentOffset.x)
         let currentIndex = (Int(roundf(xOffset)) % (self.navigationBarView.subviews.count * Int(self.SCREENSIZE.width))) / Int(self.SCREENSIZE.width)
+        self.scrollEnded?(currentPage: currentIndex, pageChanged: self.currentPage != currentIndex)
         if  self.currentPage != currentIndex {
             self.currentPage = currentIndex
             if self.needToShowPageControl {
@@ -297,7 +300,7 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
     
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         let xOffset = scrollView.contentOffset.x
-        let distance = CGFloat(100 + self.navigationSideItemsStyle.rawValue)
+        let distance = CGFloat(SCREENSIZE.width/2 - CGFloat(self.navigationSideItemsStyle.rawValue))
         for (i, v) in self.navItems.enumerate() {
             let vSize    = v.frame.size
             let originX  = self.getOriginX(vSize, idx: CGFloat(i), distance: CGFloat(distance), xOffset: xOffset)

@@ -42,8 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let items = [UIImageView(image: img1), UIImageView(image: img2), UIImageView(image: img3)]
         let controllers = [ctr1, ctr2, ctr3]
         controller = SLPagingViewSwift(items: items, controllers: controllers, showPageControl: false)
-        
+        controller.navigationSideItemsStyle = SLNavigationSideItemsStyle.SLNavigationSideItemsStyleOnBounds
         controller.pagingViewMoving = ({ subviews in
+            print(subviews[1].center.x)
             if let imageViews = subviews as? [UIImageView] {
                 for imgView in imageViews {
                     var c = gray

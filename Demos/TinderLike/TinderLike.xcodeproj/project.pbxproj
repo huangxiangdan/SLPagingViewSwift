@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E1C13A41CD242880050A9BD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1C13A31CD242880050A9BD /* TestViewController.swift */; };
+		1EE4FA891CE180AA00B0C0F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4FA881CE180AA00B0C0F7 /* Launch Screen.storyboard */; };
 		F85CA9AB1A61963B0013CF3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85CA9AA1A61963B0013CF3F /* AppDelegate.swift */; };
 		F85CA9B21A61963B0013CF3F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F85CA9B11A61963B0013CF3F /* Images.xcassets */; };
 		F85CA9C11A61963B0013CF3F /* TinderLikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85CA9C01A61963B0013CF3F /* TinderLikeTests.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		1E1C13A31CD242880050A9BD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		1EE4FA881CE180AA00B0C0F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F85CA9A51A61963B0013CF3F /* TinderLike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderLike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85CA9A91A61963B0013CF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F85CA9AA1A61963B0013CF3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		F85CA99C1A61963B0013CF3F = {
 			isa = PBXGroup;
 			children = (
+				1EE4FA881CE180AA00B0C0F7 /* Launch Screen.storyboard */,
 				F85CA9CD1A6196930013CF3F /* SLPagingViewSwift */,
 				F85CA9A71A61963B0013CF3F /* TinderLike */,
 				F85CA9BD1A61963B0013CF3F /* TinderLikeTests */,
@@ -204,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE4FA891CE180AA00B0C0F7 /* Launch Screen.storyboard in Resources */,
 				F85CA9B21A61963B0013CF3F /* Images.xcassets in Resources */,
 				F85CA9CC1A61968B0013CF3F /* Default-568h@2x.png in Resources */,
 			);
