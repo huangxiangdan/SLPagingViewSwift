@@ -252,13 +252,13 @@ public class SLPagingViewSwift: UIViewController, UIScrollViewDelegate {
                     let ctr = self.controllers[i]
                     addChildViewController(ctr)
                     let childController = ctr
-                    childController.beginAppearanceTransition(true, animated: false)
+                    // childController.beginAppearanceTransition(true, animated: false)
                     childController.view.frame = CGRectMake(0, 0, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds))
                     childController.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
                     v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
                     self.scrollView.addSubview(v)
                     childController.didMoveToParentViewController(self)
-                    childController.endAppearanceTransition()
+                    // childController.endAppearanceTransition()
                 }else{
                     v.frame          = CGRectMake(self.SCREENSIZE.width * CGFloat(i), 0, self.SCREENSIZE.width, self.SCREENSIZE.height)
                     self.scrollView.addSubview(v)
